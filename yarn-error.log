@@ -1,0 +1,41 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files\Yarn\bin\yarn.js add next typescritp
+
+PATH: 
+  C:\Python27\;C:\Python27\Scripts;D:\Delphi7\Bin;D:\Delphi7\Projects\Bpl\;C:\Inprise\vbroker\bin;C:\Program Files\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Far2\Mplayer;C:\Program Files\Far2;C:\Program Files\Windows Live\Shared;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_221\bin;C:\Andriod\sdk\platform-tools;C:\Program Files\nodejs\;C:\Program Files\Yarn\bin\;C:\Users\Андрей\AppData\Local\Microsoft\WindowsApps;C:\mongo\mongodb-win32-i386-3.2.21\bin;C:\Users\Андрей\AppData\Local\Programs\Microsoft VS Code\bin;C:\Android\sdk\platform-tools;C:\Users\Андрей\AppData\Roaming\npm;C:\Users\Андрей\AppData\Local\Yarn\bin;
+
+Yarn version: 
+  1.19.0
+
+Node version: 
+  10.16.3
+
+Platform: 
+  win32 ia32
+
+Trace: 
+  Error: https://registry.yarnpkg.com/typescritp: Not found
+      at Request.params.callback [as _callback] (C:\Program Files\Yarn\lib\cli.js:66027:18)
+      at Request.self.callback (C:\Program Files\Yarn\lib\cli.js:140539:22)
+      at Request.emit (events.js:198:13)
+      at Request.<anonymous> (C:\Program Files\Yarn\lib\cli.js:141511:10)
+      at Request.emit (events.js:198:13)
+      at IncomingMessage.<anonymous> (C:\Program Files\Yarn\lib\cli.js:141433:12)
+      at Object.onceWrapper (events.js:286:20)
+      at IncomingMessage.emit (events.js:203:15)
+      at endReadableNT (_stream_readable.js:1145:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+
+npm manifest: 
+  {
+    "name": "develops-today-task",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
