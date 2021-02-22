@@ -1,9 +1,10 @@
 import axios from '../axios';
+import {IPost} from '../redux/types'
 
-type DataType = {
-  title: string,
-  body: string
-}
+// type DataType = {
+//   title: string,
+//   body: string
+// }
 
 export function getPosts<T>(): Promise<T>{
   return axios.get('')
@@ -13,7 +14,7 @@ export function getPost<T>(id: string): Promise<T>{
   return axios.get(`${id}?_embed=comments`)
 }
 
-export function addPost<T>(data: DataType): Promise<T>{
+export function addPost<T>(data: IPost): Promise<T>{
   return axios.post('', data)
 }
 
