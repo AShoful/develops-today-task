@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import tasks from './tasks';
+import posts from './posts';
 
-const rootReducer = combineReducers({ tasks});
+const rootReducer = combineReducers({ posts});
 
 export default rootReducer;
 export type RootState = ReturnType<typeof rootReducer>;

@@ -1,15 +1,12 @@
-import withRedux from 'next-redux-wrapper';
-import { Provider } from 'react-redux';
-import initStore from '../redux/store';
+import { Provider } from 'react-redux'
+import { useStore } from '../redux/store'
 
+export default function App({ Component, pageProps }) {
+  const store = useStore(pageProps.initialReduxState)
 
-function MyApp({ Component, pageProps, store, ...rest }) {
-    return (
-        <Provider store={store}>
-            <Component {...pageProps} />
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
+  )
 }
-
-
-export default withRedux(initStore)(MyApp);
