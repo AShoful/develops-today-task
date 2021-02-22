@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { Layout } from '../Layout/Layout'
 
 const Home = (): JSX.Element => (
-  <div> 
+  <Layout title="Home"> 
     <Title>My First Next.js Page</Title>
-  </div>
+  </Layout>
 );
 
 
