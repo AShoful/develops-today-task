@@ -5,7 +5,7 @@ export interface IPost {
     id?: number,
     title: string,
     body: string,
-}
+};
 
 type id = number
 
@@ -13,7 +13,7 @@ type id = number
 interface IAddPost {
     type: typeof ADD_POST,
     payload: IPost,
-}
+};
 
 interface IGetPost {
     type: typeof GET_POST,
@@ -24,6 +24,6 @@ interface IGetPost {
 interface IGetPosts {
     type: typeof GET_POSTS,
     payload: IPost[]
-}
+};
 
 export type ActionTypes = IAddPost | IGetPost | IGetPosts;

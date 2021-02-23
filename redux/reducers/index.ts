@@ -14,7 +14,7 @@ const posts = (state = [], action: ActionTypes): stateTasks => {
     
   default:
     return state;
-  }
-}
+  };
+};
 
 export default posts;

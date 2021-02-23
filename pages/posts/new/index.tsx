@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import styled from 'styled-components';
+
 import { Layout } from "../../../Layout/Layout";
 import { fetchAddPost } from "../../../redux/actions/actionCreator";
-import styled from 'styled-components'; 
 
 export default function AddPost (): JSX.Element{
 
@@ -9,11 +10,11 @@ export default function AddPost (): JSX.Element{
 	const [title, setTitle] = useState('');
 
   const submite = (e) => {
-    e.preventDefault()
-    const post = {title, body}
-    fetchAddPost(post)
-    setText('')
-    setTitle('')
+    e.preventDefault();
+    const post = {title, body};
+    fetchAddPost(post);
+    setText('');
+    setTitle('');
   };  
 
   return <Layout title = "Add post"> 
@@ -29,7 +30,7 @@ export default function AddPost (): JSX.Element{
             <textarea 
               placeholder="body"
               value={body}
-              rows={8}
+              rows={4}
               onChange={(e) => setText(e.target.value)}
             />
           </div>
