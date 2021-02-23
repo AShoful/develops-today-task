@@ -1,6 +1,6 @@
-import Link from 'next/link'
-import Head from 'next/head'
-import styled from 'styled-components'
+import Link from 'next/link';
+import Head from 'next/head';
+import styled from 'styled-components';
 
 const Nav = styled.nav`
 {
@@ -29,19 +29,20 @@ const Main = styled.main`
 type LayoutType = {
   title: string,
   children: React.ReactNode
-}
+};
+
 export function Layout({ children, title = 'Next App' }: LayoutType): JSX.Element {
   return (
     <>
       <Head>
         <title>{title}</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
         <meta name="keywords" content="next,javascript,nextjs,react" />
-        <meta name="description" content="this is youtube tutorial for next" />
         <meta charSet="utf-8" />
       </Head>
       <Nav>
-        <Link href={'/'}><a>Home</a></Link>
-        <Link href={'/posts/new'}><a>AddPost</a></Link>
+        <Link href={'/'}><a>Posts List</a></Link>
+        <Link href={'/posts/new'}><a>Add Post</a></Link>
       </Nav>
       <Main>
         {children}

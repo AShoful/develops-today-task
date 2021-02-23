@@ -4,9 +4,15 @@ import { useStore } from '../redux/store'
 export default function App({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState)
 
-  return (
+  return (<>
     <Provider store={store}>
       <Component {...pageProps} />
     </Provider>
+    <style jsx global>{`
+      body {
+        font-family: 'Roboto', sans-serif;
+      }
+    `}</style>
+    </>
   )
 }

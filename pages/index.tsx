@@ -1,26 +1,24 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Link from 'next/link'
-// import styled from 'styled-components';
+import Link from 'next/link';
+ import styled from 'styled-components';
 import { Layout } from '../Layout/Layout';
 import { fetchPosts } from '../redux/actions/actionCreator';
-import { IPost } from '../redux/types'
+import { IPost } from '../redux/types';
  
-const Home = (): JSX.Element => {
+const PostsList = (): JSX.Element => {
 
   const dispatch = useDispatch()
   
   useEffect(() => {
     dispatch(fetchPosts())
-  }, [dispatch])
+  }, [dispatch]);
 
-  const posts = useSelector((state: IPost[]) => state)
+  const posts = useSelector((state: IPost[]) => state);
 
-  console.log(posts);
-  
-  return <Layout title="Home"> 
-    <h1>Posts Page</h1>
-      <ul>
+  return <Layout title="Post List"> 
+    <h4>Posts List</h4>
+      <Ul>
         {posts.map(post => (
           <li key={post.id}>
             <Link href={`/posts/[id]`} as={`/posts/${post.id}`}>
@@ -28,21 +26,20 @@ const Home = (): JSX.Element => {
             </Link>
           </li>
         ))}
-      </ul>
-    {/* {posts.map(item => (
-      <Div key={item.id}>
-        <span>{item.title}</span> 
-        <span>{item.body}</span>
-      </Div>
-    ))} */}
+      </Ul>
   </Layout>
 };
 
+const Ul = styled.ul`
+  li {
+    list-style: none;
+  }
 
-// const Div = styled.div`
-//   border: 1px solid grey;
-//   display: flex;
-//   justify-content: space-between;
-// `;
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+`;
 
-export default Home
+export default PostsList

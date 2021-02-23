@@ -1,28 +1,28 @@
 module.exports = {
     "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
+        // "browser": true,
+        // "es2021": true,
+        // "node": true
     },
     "extends": [
         "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:prettier/recommended",
+        "plugin:prettier/react",
+        "plugin:prettier/@typescript-eslint"
     ],
     "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
     "plugins": [
+        "@typescript-eslint",
         "react",
-        "@typescript-eslint"
+        "prettier"
     ],
     "rules": {
         "react/display-name": 0,
         "react/react-in-jsx-scope": 0,
         "react/prop-types": 0
+    },
+    "globals": {
+        "React": "writable"
     }
 };

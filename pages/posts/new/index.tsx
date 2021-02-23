@@ -1,44 +1,94 @@
 import { useState } from 'react';
 import { Layout } from "../../../Layout/Layout";
-import { fetchAddPost } from "../../../redux/actions/actionCreator"
+import { fetchAddPost } from "../../../redux/actions/actionCreator";
+import styled from 'styled-components'; 
 
 export default function AddPost (): JSX.Element{
 
-  const [text, setText] = useState('')
-	const [title, setTitle] = useState('')
+  const [body, setText] = useState('');
+	const [title, setTitle] = useState('');
 
   const submite = (e) => {
     e.preventDefault()
-    const post = {title, text}
+    const post = {title, body}
     fetchAddPost(post)
     setText('')
     setTitle('')
-    
-}
+  };  
 
   return <Layout title = "Add post"> 
-    <form >
+    <Form >
 			<fieldset >
-        <legend >Добавить пост</legend>
+        <legend >Add Post</legend>
           <div>
             <input
-              value = {title}
-              onChange = {(e) => setTitle(e.target.value)}
+              value={title}
+              placeholder="title"
+              onChange={(e) => setTitle(e.target.value)}
             />
             <textarea 
-              value = {text}
-              onChange = {(e) => setText(e.target.value)}
+              placeholder="body"
+              value={body}
+              rows={8}
+              onChange={(e) => setText(e.target.value)}
             />
           </div>
           <div>
             <button 
-              disabled = {!title || !text} 
-              onClick = {submite}>
-                Сохранить
+              disabled={!title || !body} 
+              onClick={submite}>
+                Save
             </button>
           </div>
         </fieldset>	
-			</form>
+			</Form>
     </Layout>
+};
+
+const Form = styled.form`
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 95%;
+  margin: 5px auto;
+  padding: 20px;
+  background-color: #ffffff;
 }
 
+ fieldset {
+  border: none
+}
+
+ fieldset legend {
+  font-weight: 600;
+}
+
+input,
+textarea {
+  padding: 15px;
+  width: 95%;
+  margin: 15px auto;
+  border: 1px solid black;
+}
+
+input {
+  height: 25px
+}
+
+button {
+  width: 99%;
+  padding: 10px 0;
+  cursor: pointer;
+  font-weight: 500;
+  background-color: darkblue;
+  color: #fff;
+  font-size: 25px
+}
+
+button:disabled {
+  background: #ccc;
+  color: #000;
+  cursor: not-allowed;
+}
+`
