@@ -1,14 +1,18 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useStore } from 'react-redux';
 import Link from 'next/link';
  import styled from 'styled-components';
 import { Layout } from '../Layout/Layout';
+import { getPosts } from '../api'
 import { fetchPosts } from '../redux/actions/actionCreator';
 import { IPost } from '../redux/types';
  
 const PostsList = (): JSX.Element => {
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  const store = useStore();
   
   useEffect(() => {
     dispatch(fetchPosts())
@@ -29,6 +33,16 @@ const PostsList = (): JSX.Element => {
       </Ul>
   </Layout>
 };
+
+PostsList.getInitialProps = async () => {
+  const response = await getPosts();
+  const posts: IPost[] = await response.data;
+  
+  return {
+    posts
+  }
+};
+
 
 const Ul = styled.ul`
   li {
