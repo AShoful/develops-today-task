@@ -3,11 +3,11 @@ import { ADD_POST, GET_POST, GET_POSTS } from './constants';
 // Store
 export interface IPost {
     id?: number,
-    text: string,
+    title: string,
     body: string,
 }
 
-type id = string
+type id = number
 
 // Actions
 interface IAddPost {

@@ -22,10 +22,10 @@ a {
 `
 const Main = styled.main`
 {
-  margin-top: 60px;
-  padding: 1rem;
+  padding: 60px 20px;
 }
 `
+
 type LayoutType = {
   title: string,
   children: React.ReactNode

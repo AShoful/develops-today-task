@@ -6,11 +6,11 @@ import {IPost} from '../redux/types'
 //   body: string
 // }
 
-export function getPosts<T>(): Promise<T>{
+export function getPosts(){
   return axios.get('')
 }
 
-export function getPost<T>(id: string): Promise<T>{
+export function getPost<T>(id: number): Promise<T>{
   return axios.get(`${id}?_embed=comments`)
 }
 
