@@ -22,7 +22,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --ext .ts,.tsx"
+    "format": "prettier --write */**/*.{js,jsx,ts,tsx}",
+    "lint": "eslint --fix .{js,jsx,ts,tsx}"
   },
   "resolutions": {
     "styled-components": "^5"

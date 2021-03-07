@@ -2,45 +2,58 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { initializeStore } from '../redux/store';
 
 import { Layout } from '../Layout/Layout';
-import { getPosts } from '../api';
-import { fetchPosts } from '../redux/actions/actionCreator';
+import { initialProps, addPostsRedux } from '../redux/actions/actionCreator';
 import { IPost } from '../redux/types';
- 
-const PostsList = (): JSX.Element => {
 
-  const dispatch = useDispatch();
-    
-  useEffect(() => {
-    dispatch(fetchPosts())
-  }, [dispatch]);
+const PostsList = ({ posts }): JSX.Element => {
+  // const dispatch = useDispatch();
+  const postsRedux = useSelector((state: IPost[]) => state);
+  // console.log(posts)
+  // useEffect(() => {
+  //     dispatch(addPostsRedux(posts))
+  // }, [dispatch]);
 
-  const posts = useSelector((state: IPost[]) => state);
-
-  return <Layout title="Post List"> 
+  return (
+    <Layout title="Post List">
       <h4>Posts List</h4>
-        <Ul>
-          {posts.map(post => (
-            <li key={post.id}>
-              <Link href={`/posts/[id]`} as={`/posts/${post.id}`}>
-                <a>{post.title}</a>
-              </Link>
-            </li>
-          ))}
-        </Ul>
+      <Ul>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <Link href={`/posts/[id]`} as={`/posts/${post.id}`}>
+              <a>{post.title}</a>
+            </Link>
+          </li>
+        ))}
+      </Ul>
     </Layout>
+  );
 };
 
-PostsList.getInitialProps = async () => {
-  const response = await getPosts();
-  const posts: IPost[] = await response.data;
-  
-  return {
-    posts
+export async function getServerSideProps(contex) {
+  const posts = await initialProps();
+  const reduxStore = initializeStore();
+  const { dispatch } = reduxStore;
+
+  dispatch(addPostsRedux(posts));
+
+  const state = await reduxStore.getState();
+  // console.log(state)
+
+  if (!posts) {
+    return {
+      notFound: true,
+    };
   }
-};
 
+  return {
+    props: {
+      posts: reduxStore.getState(),
+    },
+  };
+}
 
 const Ul = styled.ul`
   li {
@@ -51,7 +64,6 @@ const Ul = styled.ul`
     text-decoration: none;
     cursor: pointer;
   }
-  
 `;
 
-export default PostsList
+export default PostsList;
