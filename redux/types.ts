@@ -7,6 +7,10 @@ export interface IPost {
   body: string;
 }
 
+export interface IState {
+  posts: IPost[];
+}
+
 type id = number;
 
 // Actions

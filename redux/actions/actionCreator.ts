@@ -7,9 +7,8 @@ export const initialProps = async () => {
   return initialPosts.data;
 };
 
-export const initialPost = async (id) => {
+export const initialPost = async (id: number) => {
   const initialPost = await getPost(id);
-  console.log(initialPost.data);
   return initialPost.data;
 };
 
@@ -18,9 +17,10 @@ export const fetchPosts = () => async (dispatch) => {
   dispatch(addPostsRedux(response.data));
 };
 
-export const fetchAddPost = async (data, dispatch) => {
-  await addPost(data);
+export const fetchAddPost = async (data: IPost, dispatch) => {
+  const res: any = await addPost(data);
   try {
+    data.id = res.data.id;
     dispatch(addPostRedux(data));
     console.log('Ok!');
   } catch (error) {
