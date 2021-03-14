@@ -1,4 +1,5 @@
 import { ADD_POST, ADD_POSTS } from './constants';
+import { HYDRATE } from 'next-redux-wrapper';
 
 // Store
 export interface IPost {
@@ -24,4 +25,9 @@ interface IGetPosts {
   payload: IPost[];
 }
 
-export type ActionTypes = IAddPost | IGetPosts;
+interface IHydrate {
+  type: typeof HYDRATE;
+  payload: IPost[];
+}
+
+export type ActionTypes = IAddPost | IGetPosts | IHydrate;

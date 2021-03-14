@@ -19,7 +19,10 @@ const Post = ({ postSSR }): JSX.Element => {
           corrupti ipsam debitis earum. Lorem ipsum dolor sit amet consectetur
           adipisicing elit. Obcaecati incidunt, officia ad, eaque corporis vitae
           mollitia nostrum veritatis rerum unde molestias laborum voluptatibus
-          nesciunt suscipit est? Accusamus ab eos autem.
+          nesciunt suscipit est? Accusamus ab eos autem. Lorem ipsum, dolor sit
+          amet consectetur adipisicing elit. Quibusdam, blanditiis ex! Ex modi
+          animi praesentium! Temporibus, ab, accusamus eum officia illo dolorum
+          blanditiis amet ipsam maiores perspiciatis quod, iste facilis!
         </p>
       </Div>
     </Layout>
@@ -27,7 +30,7 @@ const Post = ({ postSSR }): JSX.Element => {
 };
 
 export const getServerSideProps = ({ params }) => {
-  let postSSR = { title: 'title', body: 'body', id: +params.id };
+  const postSSR: IPost = { title: 'title', body: 'body', id: +params.id };
   return {
     props: {
       postSSR,

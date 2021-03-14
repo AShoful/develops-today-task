@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { HYDRATE, createWrapper } from 'next-redux-wrapper';
+import { HYDRATE, createWrapper, MakeStore } from 'next-redux-wrapper';
 import thunkMiddleware from 'redux-thunk';
 import posts from './reducers';
+import { IState, ActionTypes } from './types';
 
 const bindMiddleware = (middleware) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -15,7 +16,7 @@ const combinedReducer = combineReducers({
   posts,
 });
 
-const reducer = (state, action) => {
+const reducer = (state: IState, action: ActionTypes) => {
   if (action.type === HYDRATE) {
     const nextState = {
       ...state, // use previous state
@@ -28,8 +29,7 @@ const reducer = (state, action) => {
   }
 };
 
-export const initStore = () => {
-  return createStore(reducer, bindMiddleware([thunkMiddleware]));
-};
+const makeStore: MakeStore<IState> = () =>
+  createStore(reducer, bindMiddleware([thunkMiddleware]));
 
-export const wrapper = createWrapper(initStore);
+export const wrapper = createWrapper<IState>(makeStore);

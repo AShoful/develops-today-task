@@ -17,7 +17,7 @@ const PostsList = (): JSX.Element => {
         {posts.map((post) => (
           <li key={post.id}>
             <Link href={`/posts/[id]`} as={`/posts/${post.id}`}>
-              <a>{post.title}</a>
+              <a>{post.title} Lorem ipsum dolor sit amet</a>
             </Link>
           </li>
         ))}
@@ -27,8 +27,8 @@ const PostsList = (): JSX.Element => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  async ({ store, req, res, ...etc }) => {
-    const posts = await initialProps();
+  async ({ store }) => {
+    const posts: IPost[] = await initialProps();
     store.dispatch(addPostsRedux(posts));
   }
 );

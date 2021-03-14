@@ -1,16 +1,11 @@
 import { ADD_POST, ADD_POSTS } from '../constants';
 import { ActionTypes, IPost } from '../types';
-import { getPosts, addPost, getPost } from '../../api';
+import { getPosts, addPost } from '../../api';
 
 export const initialProps = async () => {
   const initialPosts = await getPosts();
   return initialPosts.data;
 };
-
-// export const fetchPosts = () => async (dispatch) => {
-//   const response = await getPosts();
-//   dispatch(addPostsRedux(response.data));
-// };
 
 export const fetchAddPost = async (data: IPost, dispatch) => {
   const res: any = await addPost(data);

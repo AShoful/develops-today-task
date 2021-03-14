@@ -4,16 +4,19 @@ import { useDispatch } from 'react-redux';
 
 import { Layout } from '../../../Layout/Layout';
 import { fetchAddPost } from '../../../redux/actions/actionCreator';
+import { IPost } from '../../../redux/types';
 
 export default function AddPost(): JSX.Element {
-  const [body, setText] = useState('');
-  const [title, setTitle] = useState('');
+  const [body, setText] = useState<string>('');
+  const [title, setTitle] = useState<string>('');
 
   const dispatch = useDispatch();
 
-  const submite = (e) => {
+  const submite = (
+    e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>
+  ) => {
     e.preventDefault();
-    const post = { title, body };
+    const post: IPost = { title, body };
     fetchAddPost(post, dispatch);
     setText('');
     setTitle('');
