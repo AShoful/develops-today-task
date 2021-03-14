@@ -1,4 +1,4 @@
-import { ADD_POST, GET_POST, GET_POSTS } from './constants';
+import { ADD_POST, ADD_POSTS } from './constants';
 
 // Store
 export interface IPost {
@@ -19,14 +19,9 @@ interface IAddPost {
   payload: IPost;
 }
 
-interface IGetPost {
-  type: typeof GET_POST;
-  payload: id;
-}
-
 interface IGetPosts {
-  type: typeof GET_POSTS;
+  type: typeof ADD_POSTS;
   payload: IPost[];
 }
 
-export type ActionTypes = IAddPost | IGetPost | IGetPosts;
+export type ActionTypes = IAddPost | IGetPosts;

@@ -1,28 +1,39 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { initialPost, addPostRedux } from '../../redux/actions/actionCreator';
-import { wrapper } from '../../redux/store';
 import { Layout } from '../../Layout/Layout';
 import { IState, IPost } from '../../redux/types';
 
-const Post = (): JSX.Element => {
-  const post: IPost = useSelector((state: IState) => state.posts)[0];
+const Post = ({ postSSR }): JSX.Element => {
+  const post: IPost =
+    useSelector((state: IState) => state.posts).filter(
+      (item) => item.id === postSSR.id
+    )[0] || postSSR;
   return (
     <Layout title="Post">
       <Div>
         <h4>{post.title}</h4>
-        <p>{post.body}</p>
+        <p>
+          {post.body} Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Maxime molestiae quasi perspiciatis exercitationem dolores neque sunt
+          maiores voluptates est commodi dicta impedit voluptas quod minus eos,
+          corrupti ipsam debitis earum. Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Obcaecati incidunt, officia ad, eaque corporis vitae
+          mollitia nostrum veritatis rerum unde molestias laborum voluptatibus
+          nesciunt suscipit est? Accusamus ab eos autem.
+        </p>
       </Div>
     </Layout>
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  async ({ store, req, res, params, ...etc }) => {
-    const post: IPost = await initialPost(+params.id);
-    store.dispatch(addPostRedux(post));
-  }
-);
+export const getServerSideProps = ({ params }) => {
+  let postSSR = { title: 'title', body: 'body', id: +params.id };
+  return {
+    props: {
+      postSSR,
+    },
+  };
+};
 
 const Div = styled.div`
    {

@@ -17,19 +17,18 @@ const combinedReducer = combineReducers({
 
 const reducer = (state, action) => {
   if (action.type === HYDRATE) {
-    console.log(action);
     const nextState = {
       ...state, // use previous state
       ...action.payload, // apply delta from hydration
     };
-    if (state.posts.length <= 1) nextState.posts = state.posts; // preserve count value on client side navigation
+    if (state.posts.length) nextState.posts = state.posts; // preserve count value on client side navigation
     return nextState;
   } else {
     return combinedReducer(state, action);
   }
 };
 
-const initStore = () => {
+export const initStore = () => {
   return createStore(reducer, bindMiddleware([thunkMiddleware]));
 };
 
